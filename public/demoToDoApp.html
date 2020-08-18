@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do App</title>
+    <link rel="stylesheet" href="/src/demoToDoApp.css">
+</head>
+
+<body>
+    <div class="todoapp">
+        <div class="todoapp__header">
+            <div class="title header__title">
+                <h1 class="content title__content">To Do App</h1>
+            </div>
+        </div>
+
+        <!-- App body -->
+        <div class="todoapp__body">
+
+            <!-- App Body Left Box-->
+            <div class="lefbox body__leftbox">
+                <div class="controlgroup leftbox__controlgroup">
+                    <input class="input controlgroup__input--name" type="text" value="" placeholder="Add list">
+                </div>
+
+                <div class="listwrapper leftbox__listwrapper">
+                    <ul class="list todolist listwrapper__todolist">
+                        <li class="item todolist__item">
+                            <div class="name__wrapper">
+                                <span class="name item__name">Studying</span>
+                                <input class="input controlgroup__input--newname" value="" type="text">
+                            </div>
+                            <div class="options item__options">
+                                <button class="btn options__btn--delete" type="button">Delete</button>
+                            </div>
+
+                        </li>
+                        <li class="item todolist__item">
+                            <div class="name__wrapper">
+                                <span class="name item__name">Cleaning</span>
+                                <input class="input controlgroup__input--newname" value="" type="text">
+                            </div>
+                            <div class="options item__options">
+                                <button class="btn options__btn--delete" type="button">Delete</button>
+                            </div>
+                        </li>
+                        <li class="item todolist__item">
+                            <div class="name__wrapper">
+                                <span class="name item__name">Buying</span>
+                                <input class="input controlgroup__input--newname" value="" type="text">
+                            </div>
+                            <div class="options item__options">
+                                <button class="btn options__btn--delete" type="button">Delete</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- App Body Right Box-->
+            <div class="rightbox body__rightbox">
+                <div class="controlgroup rightbox__controlgroup">
+                    <span class="rightbox__controlgroup--before">+</span>
+                    <input class="input controlgroup__input--task" type="text" value="" placeholder="Add task">
+                </div>
+
+                <div class="listwrapper rightbox__listwrapper">
+                    <div class="title listwrapper__title">
+                        <h3 class="content title__content">Studying</h3>
+                    </div>
+                    <ul class="list taskslist listwrapper__taskslist">
+                        <li class="task taskslist__task">
+                            <label class="name task__name" for="task1">
+                                <input class="status task__status" type="checkbox" id="task1">Algorithms
+                            </label>
+                            <div class="options task__options">
+                                <button class="btn options__btn--delete" type="button">Delete</button>
+                            </div>
+                        </li>
+                        <li class="task taskslist__task">
+                            <label class="name task__name" for="task2">
+                                <input class="status task__status" type="checkbox" id="task2">Javasrcipt
+                            </label>
+                            <div class="options task__options">
+                                <button class="btn options__btn--delete" type="button">Delete</button>
+                            </div>
+                        </li>
+                        <li class="task taskslist__task">
+                            <label class="name task__name" for="task3">
+                                <input class="status task__status" type="checkbox" id="task3">PHP
+                            </label>
+                            <div class="options task__options">
+                                <button class="btn options__btn--delete" type="button">Delete</button>
+                            </div>
+                        </li>
+                        <li class="task taskslist__task">
+                            <label class="name task__name" for="task4">
+                                <input class="status task__status" type="checkbox" id="task4">Readct.js
+                            </label>
+                            <div class="options task__options">
+                                <button class="btn options__btn--delete" type="button">Delete</button>
+                            </div>
+                        </li>
+                        <li class="task taskslist__task">
+                            <label class="name task__name" for="task5">
+                                <input class="status task__status" type="checkbox" id="task5">Node.js
+                            </label>
+                            <div class="options task__options">
+                                <button class="btn options__btn--delete" type="button">Delete</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            let name = document.querySelectorAll('.name');
+            let clickCounter = 0;
+            name.forEach(element => {
+                element.addEventListener("click", () => {
+                    clickCounter += 1;
+                    setTimeout(() => {
+                        console.log("Double click failed");
+                        clickCounter = 0;
+                        return;
+                    }, 500);
+                    if (clickCounter === 2) {
+                        let newNameInput = element.nextElementSibling;
+                        element.style.display = "none";
+                        newNameInput.style.display = "block";
+                        newNameInput.focus();
+                        setTimeout(() => {
+                            newNameInput.select();
+                        }, 100);
+                        newNameInput.value = element.innerText;
+                    }
+                })
+            });
+        </script>
+</body>
+
+</html>
