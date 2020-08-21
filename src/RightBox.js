@@ -6,7 +6,6 @@ class RightBox extends React.Component {
     super(props);
     this.state = {
       task: "",
-      status: false,
     };
   }
 
@@ -38,10 +37,10 @@ class RightBox extends React.Component {
             <input
               className="status task__status"
               type="checkbox"
-              id={this.props.index + "-task-" + index}
+              // id={this.props.index + "-task-" + index}
               checked={value.status}
               onChange={(event) => {
-                this.props.handleTaskChecked(event);
+                this.props.handleTaskChecked(event, index);
               }}
             ></input>
             {value.status ? <s>{value.name}</s> : value.name}

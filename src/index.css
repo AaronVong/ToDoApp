@@ -8,6 +8,7 @@ html,
 body {
   height: 100%;
 }
+
 :root {
   --white: #ffffff;
   --boxcolor: #686de0;
@@ -22,11 +23,16 @@ body {
 #root {
   height: 100%;
 }
+
+.body__leftbox,
+.body__rightbox {
+  min-height: 100vh;
+}
 /* ========== Generic Class ========== */
 .todoapp {
   width: 100%;
-  height: 100%;
-  background-color: var(--white);
+  min-height: 100vh;
+  background-color: var(--boxcolor);
 }
 .todoapp__header {
   background-color: var(--titlecolor);
@@ -101,18 +107,20 @@ body {
 /* ========== Body Left Box ========== */
 
 .body__leftbox {
-  height: 100%;
   flex-basis: 20%;
   max-width: 25%;
-  background-color: var(--white);
   padding: 0.5rem;
   border-right: 2px solid #333;
 }
 
 .controlgroup__input--name {
-  max-width: 100%;
-  height: 25px;
+  width: 70%;
+  height: 35px;
   border: 1px solid var(--titlecolor);
+  transition: width 200ms linear;
+}
+.controlgroup__input--name:focus {
+  width: 100%;
 }
 
 .todolist {
@@ -173,7 +181,6 @@ body {
 /* ========== Body Right Box ========== */
 
 .body__rightbox {
-  height: 100%;
   flex-basis: 80%;
   max-width: 85%;
   background-color: var(--boxcolor);

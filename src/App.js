@@ -66,22 +66,16 @@ class App extends React.Component {
       this.setState({ toDoList: todolist });
       console.log("Task added!");
     } else {
-      alert("List Not Avaliable!");
+      return;
     }
   };
 
-  handleTaskChecked = (event) => {
-    /** <input> id = listIndex-task-taskIndex */
+  handleTaskChecked = (event, taskIndex) => {
     let target = event.target;
-    let splitID = target.id.split("-");
-    let length = splitID.length;
-    if (length > 0) {
-      let tempArr = this.state.toDoList;
-      tempArr[parseInt(splitID[0])].tasks[
-        parseInt(splitID[length - 1])
-      ].status = target.checked;
-      this.setState({ toDoList: tempArr });
-    }
+    let tempArr = this.state.toDoList;
+    tempArr[this.state.selectedIndex].tasks[parseInt(taskIndex)].status =
+      target.checked;
+    this.setState({ toDoList: tempArr });
   };
 
   handleDelete = (str = null) => {
