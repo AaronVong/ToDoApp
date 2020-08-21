@@ -14,7 +14,7 @@ class RightBox extends React.Component {
     this.setState({ task: event.target.value });
   };
 
-  /** bắt sự kiện "enter" để thêm 1 task mới vào list được chọn */
+  /** Press enter key to add new task to the chosen list */
   handleKeyPressCapture = (event) => {
     if (event.charCode === 13) {
       this.props.handleAddTask(this.state.task);
@@ -22,7 +22,7 @@ class RightBox extends React.Component {
     }
   };
 
-  /** Hiện thị toàn bộ task có trong 1 list được chọn */
+  /** Show all tasks in the chosen list */
   displayTasks = () => {
     const tasks = this.props.list.tasks;
     const items = tasks.map((value, index) => {
@@ -61,7 +61,14 @@ class RightBox extends React.Component {
       );
     });
 
-    return <ul className="list taskslist listwrapper__taskslist">{items}</ul>;
+    return (
+      <React.Fragment>
+        <div className="title listwrapper__title">
+          <h3 className="content title__content">{this.props.list.name}</h3>
+        </div>
+        <ul className="list taskslist listwrapper__taskslist">{items}</ul>
+      </React.Fragment>
+    );
   };
   render() {
     const Tasks = this.displayTasks;
@@ -81,12 +88,7 @@ class RightBox extends React.Component {
         </div>
 
         <div className="listwrapper rightbox__listwrapper">
-          {this.props.list !== null && (
-            <div className="title listwrapper__title">
-              <h3 className="content title__content">{this.props.list.name}</h3>
-            </div>
-          )}
-          {this.props.list !== null && <Tasks />}
+          {this.props.list && <Tasks />}
         </div>
       </div>
     );

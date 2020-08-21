@@ -85,20 +85,21 @@ class App extends React.Component {
   };
 
   handleDelete = (str = null) => {
-    /** dlist: delete list event, dtask: delete task event
-     * index = list || task index
-     */
     if (str === null) return;
     let splitArr = str.split("-");
     let index = parseInt(splitArr[splitArr.length - 1]);
+    /** delete list case */
     if (splitArr[0] === "dlist" && isNaN(index) !== true) {
-      let tempArr = [...this.state.toDoList];
-      tempArr.splice(index, 1);
-      this.setState({ toDoList: tempArr, selectedIndex: -1 });
+      this.setState((state) => ({
+        toDoList: state.toDoList.filter((val, i) => {
+          return i !== index;
+        }),
+        selectedIndex: -1,
+      }));
       console.log(`List ${this.state.selectedIndex} deleted!`);
-
       return;
     }
+    /** delete task case */
     if (splitArr[0] === "dtask" && isNaN(index) !== true) {
       let tempArr = [...this.state.toDoList];
       tempArr[this.state.selectedIndex].tasks.splice(index, 1);

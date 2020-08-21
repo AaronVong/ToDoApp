@@ -33,7 +33,7 @@ class LeftBox extends React.Component {
   handleNameChange = (event) => {
     this.setState({ newName: event.target.value });
   };
-  /** Hiện thị toàn bộ list*/
+  /** Show all elements in toDoList*/
   displayList = () => {
     let listItems = this.props.todolist.map((value, index) => {
       return (
