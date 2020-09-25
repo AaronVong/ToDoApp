@@ -8,15 +8,11 @@ class LeftBox extends React.Component {
       newName: "",
     };
   }
+
   handleKeyPressCapture = (event) => {
     if (event.charCode === 13) {
       let target = event.target;
       this.props.handleAddList(this.state.newName);
-      if (target.classList.contains("controlgroup__input--newname")) {
-        this.setState({ newName: "" });
-        target.style.display = "none";
-        target.previousElementSibling.style.display = "flex";
-      }
     }
   };
 
@@ -24,14 +20,22 @@ class LeftBox extends React.Component {
     let target = event.target;
     let newNameInput = event.target.nextElementSibling;
     newNameInput.value = target.innerText;
+    target.style.display = "none";
     newNameInput.style.display = "block";
     newNameInput.focus();
     newNameInput.select();
-    target.style.display = "none";
   };
 
   handleNameChange = (event) => {
     this.setState({ newName: event.target.value });
+  };
+
+  handleOnBlur = (event) => {
+    const target = event.target;
+    this.props.handleAddList(this.state.newName);
+    this.setState({ newName: "" });
+    target.style.display = "none";
+    target.previousElementSibling.style.display = "flex";
   };
   /** Show all elements in toDoList*/
   displayList = () => {
@@ -40,7 +44,6 @@ class LeftBox extends React.Component {
         <li className="item todolist__item" key={"todolist" + index}>
           <div className="name__wrapper">
             <a
-              href="#newtask"
               className="name item__name"
               onClick={() => {
                 this.props.handleListClick(index);
@@ -55,6 +58,7 @@ class LeftBox extends React.Component {
               type="text"
               onChange={this.handleNameChange}
               onKeyPressCapture={this.handleKeyPressCapture}
+              onBlur={this.handleOnBlur}
             ></input>
           </div>
           <div className="options item__options">

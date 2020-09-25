@@ -1,0 +1,5 @@
+How to use:
+
+Press "ENTER" after you finished typing to add/rename todos list or tasks in todos list
+DoubleClick to rename todos list
+

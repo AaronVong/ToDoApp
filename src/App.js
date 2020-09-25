@@ -42,6 +42,7 @@ class App extends React.Component {
       }));
       console.log("Add List Successed!");
     } else {
+      if (newName === "") return;
       let tempArr = this.state.toDoList;
       tempArr[this.state.selectedIndex].name = newName;
       this.setState({ toDoList: tempArr });
@@ -90,7 +91,7 @@ class App extends React.Component {
         }),
         selectedIndex: -1,
       }));
-      console.log(`List ${this.state.selectedIndex} deleted!`);
+      console.log(`List ${index} deleted!`);
       return;
     }
     /** delete task case */
@@ -114,7 +115,8 @@ class App extends React.Component {
       <div className="todoapp">
         <div className="todoapp__header">
           <div className="title header__title">
-            <h1 className="content title__content">To Do App</h1>
+            <h1 className="content title__content">Todos App</h1>
+            <h6>Made by AaronVong</h6>
           </div>
         </div>
 
