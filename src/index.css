@@ -145,17 +145,18 @@ body,
   max-width: 100%;
   height: 60px;
   max-height: 65px;
-  padding: 0 1em;
   background-color: whitesmoke;
   display: flex;
   justify-content: space-between;
+  padding: 0 0.5em;
   align-items: center;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   border-bottom: 1px solid silver;
   cursor: pointer;
   transition: background-color 200ms linear;
 }
 .item__options {
+  flex-basis: 25%;
   display: flex;
   overflow-x: hidden;
   justify-content: flex-end;
@@ -164,23 +165,31 @@ body,
 .name__wrapper {
   display: flex;
   align-items: center;
-  flex-basis: 60%;
+  flex-basis: 50%;
   height: 100%;
 }
 
+.tasks-completed {
+  display: inline-block;
+  flex-basis: 25%;
+  text-transform: capitalize;
+  color: #43a047;
+  font-size: 15px;
+}
 .controlgroup__input--newname {
   display: none;
   max-width: 100%;
 }
+
 .item__name {
   font-size: 17px;
   color: var(--boxcolor);
   font-weight: bold;
   display: flex;
-  width: 100%;
-  height: 100%;
   align-items: center;
-  text-decoration: none;
+  max-width: 100%;
+  height: 100%;
+  word-wrap: break-word;
 }
 
 .item__name:hover {
@@ -189,6 +198,10 @@ body,
 
 .todolist__item:hover {
   background-color: rgb(218, 218, 218);
+}
+
+.todolist__item:hover .tasks-completed {
+  color: #00c853;
 }
 ::-webkit-scrollbar {
   width: 10px;

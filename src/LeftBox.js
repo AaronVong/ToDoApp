@@ -7,15 +7,27 @@ class LeftBox extends React.Component {
     this.state = {
       newName: "",
     };
+    this.nameRef = null;
+    this.setNameRef = (element) => {
+      this.nameRef = element;
+    };
   }
 
+  /** on "enter" pressed, we add/rename list and toggle the newname input, the name*/
   handleKeyPressCapture = (event) => {
     if (event.charCode === 13) {
-      let target = event.target;
+      this.setNameRef(event.target);
+      // console.log(this.nameRef);
       this.props.handleAddList(this.state.newName);
+      if (this.nameRef.classList.contains("controlgroup__input--newname")) {
+        this.setState({ newName: "" });
+        this.nameRef.style.display = "none";
+        this.nameRef.previousElementSibling.style.display = "flex";
+      }
     }
   };
 
+  /** on doubleClick hide the name and show newname input of current task */
   handleDoubleClick = (event) => {
     let target = event.target;
     let newNameInput = event.target.nextElementSibling;
@@ -30,6 +42,11 @@ class LeftBox extends React.Component {
     this.setState({ newName: event.target.value });
   };
 
+  isListCompleted = (tasks) => {
+    if (tasks.length === 0) return false;
+    return !tasks.some((value) => value.status === false);
+  };
+  /** handle onBlur of newname input*/
   handleOnBlur = (event) => {
     const target = event.target;
     this.props.handleAddList(this.state.newName);
@@ -59,8 +76,12 @@ class LeftBox extends React.Component {
               onChange={this.handleNameChange}
               onKeyPressCapture={this.handleKeyPressCapture}
               onBlur={this.handleOnBlur}
+              maxLength={30}
             ></input>
           </div>
+          {this.isListCompleted(value.tasks) && (
+            <i className="tasks-completed">completed</i>
+          )}
           <div className="options item__options">
             <button
               className="btn options__btn--delete"
@@ -90,6 +111,7 @@ class LeftBox extends React.Component {
             placeholder="Add list"
             onKeyPressCapture={this.handleKeyPressCapture}
             onChange={this.props.listNameEnter}
+            maxLength={30}
           ></input>
         </div>
         <div className="listwrapper leftbox__listwrapper">
